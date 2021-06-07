@@ -1,4 +1,4 @@
-package port
+package db
 
 import (
 	"context"
@@ -9,7 +9,7 @@ import (
 type Repository interface {
 	Close()
 	InsertMeow(ctx context.Context, meow schema.Meow) error
-	ListenMeows(ctx context.Context, skip uint64, take uint64) ([]schema.Meow, error)
+	ListMeows(ctx context.Context, skip uint64, take uint64) ([]schema.Meow, error)
 }
 
 var repoImpl Repository
@@ -26,6 +26,6 @@ func InsertMeow(ctx context.Context, meow schema.Meow) error {
 	return repoImpl.InsertMeow(ctx, meow)
 }
 
-func ListenMeows(ctx context.Context, skip uint64, take uint64) ([]schema.Meow, error) {
-	return repoImpl.ListenMeows(ctx, skip, take)
+func ListMeows(ctx context.Context, skip uint64, take uint64) ([]schema.Meow, error) {
+	return repoImpl.ListMeows(ctx, skip, take)
 }
